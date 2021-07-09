@@ -31,7 +31,7 @@ local function main()
         action.restockAll()
     end
     gps.go({0,0})
-    if #args == 1 and args[1] == "docleanup" then
+    if #args == 1 and args[1] == "nocleanup" then
         action.destroyAll()
         gps.go({0,0})
     end

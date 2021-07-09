@@ -9,10 +9,10 @@ local config = require("tasks")
 
 local args = {...}
 local nonstop = false
-local docleanup = false
+local docleanup = true
 if #args == 1 then
-    if args[1] == "docleanup" then
-        docleanup = true
+    if args[1] == "nocleanup" then
+        docleanup = false
     elseif args[1] == "nonstop" then
         nonstop = true
     end
