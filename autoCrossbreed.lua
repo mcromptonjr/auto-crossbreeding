@@ -4,41 +4,7 @@ local database = require("database")
 local scanner = require("scanner")
 local posUtil = require("posUtil")
 local config = require("config")
-
-local lowestTier
-local lowestTierSlot
-local lowestStat
-local lowestStatSlot
-
-local function updateLowest()
-    lowestTier = 64
-    lowestTierSlot = 0
-    lowestStat = 64
-    lowestStatSlot = 0
-    local farm = database.getFarm()
-    -- pairs() is slower than numeric for due to function call overhead.
-    for slot=1, config.farmArea, 2 do
-        local crop = farm[slot]
-        if crop ~= nil then
-            if crop.tier < lowestTier then
-                lowestTier = crop.tier
-                lowestTierSlot = slot
-            end
-        end
-    end
-    for slot=1, config.farmArea, 2 do
-        local crop = farm[slot]
-        if crop ~= nil then
-            if crop.tier == lowestTier then
-                local stat = crop.gr+crop.ga-crop.re
-                if stat < lowestStat then
-                    lowestStat = stat
-                    lowestStatSlot = slot
-                end
-            end
-        end
-    end
-end
+local config = require("tasks")
 
 local function findSuitableFarmSlot(crop)
     -- if the return value > 0, then it's a valid crop slot
@@ -54,44 +20,6 @@ local function findSuitableFarmSlot(crop)
     return 0
 end
 
-local function breedOnce()
-    for slot=2, config.farmArea, 2 do
-        gps.go(posUtil.farmToGlobal(slot))
-        local crop = scanner.scan()
-        if crop.name == "air" then
-            action.placeCropStick(2)
-        elseif (not config.assumeNoBareStick) and crop.name == "crop" then
-            action.placeCropStick()
-        elseif crop.isCrop then
-            if crop.name == "weed" or crop.gr > 21 or
-              (crop.name == "venomilia" and crop.gr > 7) then
-                action.deweed()
-                action.placeCropStick()
-            else
-                if database.existInStorage(crop) then
-                    local suitableSlot = findSuitableFarmSlot(crop)
-                    if suitableSlot == 0 then
-                        action.deweed()
-                        action.placeCropStick()
-                    else
-                        action.transplant(posUtil.farmToGlobal(slot), posUtil.farmToGlobal(suitableSlot))
-                        action.placeCropStick(2)
-                        database.updateFarm(suitableSlot, crop)
-                        updateLowest()
-                    end
-                else
-                    action.transplant(posUtil.farmToGlobal(slot), posUtil.storageToGlobal(database.nextStorageSlot()))
-                    action.placeCropStick(2)
-                    database.addToStorage(crop)
-                end
-            end
-        end
-        if action.needCharge() then
-            action.charge()
-        end
-    end
-end
-
 local function init()
     database.scanFarm()
     database.scanStorage()
@@ -102,7 +30,7 @@ end
 local function main()
     init()
     while true do
-        breedOnce()
+        tasks.breedOnce()
         gps.go({0,0})
         action.restockAll()
     end

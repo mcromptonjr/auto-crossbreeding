@@ -1,3 +1,9 @@
+--[[
+Change path to github location to pull from (for those who fork...)
+Ensure you have the '/ at the end
+]]
+local path = "https://raw.githubusercontent.com/AtomicGrog/auto-crossbreeding/"
+
 local shell = require("shell")
 local filesystem = require("filesystem")
 local args = {...}
@@ -36,11 +42,11 @@ if #args == 2 then
 end
 
 for i=1, #scripts do
-    shell.execute("wget -f https://raw.githubusercontent.com/xyqyear/auto-crossbreeding/"..branch.."/"..scripts[i])
+    shell.execute("wget -f "..path..branch.."/"..scripts[i])
 end
 
 if not exists("config.lua") then
-    shell.execute("wget https://raw.githubusercontent.com/xyqyear/auto-crossbreeding/"..branch.."/config.lua")
+    shell.execute("wget "..path..branch.."/config.lua")
 end
 
 if option == "updateconfig" then
@@ -51,5 +57,5 @@ if option == "updateconfig" then
         shell.execute("mv config.lua config.bak")
         print("Moved config.lua to config.bak")
     end
-    shell.execute("wget https://raw.githubusercontent.com/xyqyear/auto-crossbreeding/"..branch.."/config.lua")
+    shell.execute("wget "..branch.."/config.lua")
 end

@@ -4,43 +4,10 @@ local posUtil = require("posUtil")
 local scanner = require("scanner")
 local action = require("action")
 local config = require("config")
+local config = require("tasks")
+
 
 local args = {...}
-
-local function spreadOnce()
-    for slot=2, config.farmSize^2, 2 do
-        gps.go(posUtil.farmToGlobal(slot))
-        local crop = scanner.scan()
-        if crop.name == "air" then
-            action.placeCropStick(2)
-        elseif (not config.assumeNoBareStick) and crop.name == "crop" then
-            action.placeCropStick()
-        elseif crop.isCrop then
-            if crop.name == "weed" or crop.gr > 23 or
-              (crop.name == "venomilia" and crop.gr > 7) then
-                action.deweed()
-                action.placeCropStick()
-            elseif crop.name == database.getFarm()[1].name and
-                  (not config.bestStatWhileSpreading or (crop.gr >= 21 and crop.ga == 31)) then
-                local nextMultifarmPos = database.nextMultifarmPos()
-                if nextMultifarmPos then
-                    action.transplantToMultifarm(posUtil.farmToGlobal(slot), nextMultifarmPos)
-                    action.placeCropStick(2)
-                    database.updateMultifarm(nextMultifarmPos)
-                else
-                    return true
-                end
-            else
-                action.deweed()
-                action.placeCropStick()
-            end
-        end
-        if action.needCharge() then
-            action.charge()
-        end
-    end
-    return false
-end
 
 local function init()
     database.scanFarm()
@@ -59,7 +26,7 @@ end
 
 local function main()
     init()
-    while not spreadOnce() do
+    while not tasks.spreadOnce() do
         gps.go({0, 0})
         action.restockAll()
     end
