@@ -4,7 +4,7 @@ local database = require("database")
 local scanner = require("scanner")
 local posUtil = require("posUtil")
 local config = require("config")
-local config = require("tasks")
+local tasks = require("tasks")
 
 local function findSuitableFarmSlot(crop)
     -- if the return value > 0, then it's a valid crop slot

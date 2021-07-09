@@ -4,7 +4,7 @@ local posUtil = require("posUtil")
 local scanner = require("scanner")
 local action = require("action")
 local config = require("config")
-local config = require("tasks")
+local tasks = require("tasks")
 
 
 local args = {...}
