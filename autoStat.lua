@@ -33,7 +33,7 @@ local function init()
     if config.keepNewCropWhileMinMaxing then
         database.scanStorage()
     end
-    updateLowest()
+    tasks.updateLowest()
     action.restockAll()
 end
 

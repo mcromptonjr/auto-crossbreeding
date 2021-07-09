@@ -120,3 +120,9 @@ local function spreadOnce()
     end
     return false
 end
+
+return {
+    spreadOnce = spreadOnce,
+    breedOnce = breedOnce,
+    updateLowest = updateLowest
+}
