@@ -9,6 +9,8 @@ local lowestTier
 local lowestTierSlot
 local lowestStat
 local lowestStatSlot
+local nearestReplacableDistance
+local nearestReplacableSlot
 
 local function updateLowest()
     lowestStat = 64
@@ -40,6 +42,9 @@ local function updateLowest()
     end
 end
 
+--[[
+This came from autoCrossBred, needs to be renamed or something lated
+
 local function findSuitableFarmSlot(crop)
     -- if the return value > 0, then it's a valid crop slot
     -- if the return value == 0, then it's not a valid crop slot
@@ -52,6 +57,17 @@ local function findSuitableFarmSlot(crop)
         end
     end
     return 0
+end
+]]
+
+local function findSuitableFarmSlot(crop)
+    if nearestReplacableSlot ~= 0 then
+        return nearestReplacableSlot
+    elseif crop.gr+crop.ga-crop.re > lowestStat then
+        return lowestStatSlot
+    else
+        return 0
+    end
 end
 
 local function breedOnce()
