@@ -40,6 +40,20 @@ local function updateLowest()
     end
 end
 
+local function findSuitableFarmSlot(crop)
+    -- if the return value > 0, then it's a valid crop slot
+    -- if the return value == 0, then it's not a valid crop slot
+    --     the caller may consider not to replace any crop.
+    if crop.tier > lowestTier then
+        return lowestTierSlot
+    elseif crop.tier == lowestTier then
+        if crop.gr+crop.ga-crop.re > lowestStat then
+            return lowestStatSlot
+        end
+    end
+    return 0
+end
+
 local function breedOnce()
     -- return true if all stats are maxed out
     -- 52 = 21(max gr) + 31(max ga) - 0 (min re)

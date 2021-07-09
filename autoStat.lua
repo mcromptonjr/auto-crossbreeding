@@ -18,16 +18,6 @@ if #args == 1 then
     end
 end
 
-local function findSuitableFarmSlot(crop)
-    if nearestReplacableSlot ~= 0 then
-        return nearestReplacableSlot
-    elseif crop.gr+crop.ga-crop.re > lowestStat then
-        return lowestStatSlot
-    else
-        return 0
-    end
-end
-
 local function init()
     database.scanFarm()
     if config.keepNewCropWhileMinMaxing then
