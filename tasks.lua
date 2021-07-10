@@ -11,6 +11,7 @@ local lowestStat
 local lowestStatSlot
 local nearestReplacableDistance
 local nearestReplacableSlot
+local fillGaps
 
 local function updateLowest()
     lowestStat = 64
@@ -152,8 +153,42 @@ local function spreadOnce()
 end
 
 local function fillGaps()
-    print("fillGaps called\n\n")
+    -- return true if all the gaps have been filled
+    print("fillGaps called\n")
     local fillResult = true
+    for slot=2, config.farmSize^2, 2 do
+        gps.go(posUtil.farmToGlobal(slot))
+        local crop = scanner.scan()
+        print("Crop = "..crop.name.."\n")
+        if crop.name == "air" then
+            action.placeCropStick(2)
+            local fillResult = false`
+        elseif (not config.assumeNoBa
+        reStick) and crop.name == "crop" then
+            action.placeCropStick()
+            local fillResult = false
+        elseif crop.isCrop then
+            if crop.name == "weed" or crop.gr > 21 or
+              (crop.name == "venomilia" and crop.gr > 7) then
+                action.deweed()
+                action.placeCropStick()
+                local fillResult = false
+            elseif crop.ga ~= 31 and crop.re ~= 0 then
+                action.deweed()
+                action.placeCropStick()
+                local fillResult = false
+            elseif crop.name == database.getFarm()[1].name then
+                local ignoreMe = true
+            else
+                action.deweed()
+                action.placeCropStick()
+                local fillResult = false
+            end
+        end
+        if action.needCharge() then
+            action.charge()
+        end
+    end
     return fillResult
 end
 
