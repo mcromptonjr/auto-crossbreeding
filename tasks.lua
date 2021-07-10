@@ -153,15 +153,12 @@ end
 
 local function fillGaps()
     -- return true if all the gaps have been filled
+    print("fillGaps called\n")
     local fillResult = true
-
-    if not nonstop and lowestStat == 52 then
-        return true
-    end
-
     for slot=2, config.farmSize^2, 2 do
         gps.go(posUtil.farmToGlobal(slot))
         local crop = scanner.scan()
+        print("Crop = "..crop.name.."\n")
         if crop.name == "air" then
             action.placeCropStick(2)
             local fillResult = false

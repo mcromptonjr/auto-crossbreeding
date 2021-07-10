@@ -29,17 +29,18 @@ local function init()
 end
 
 local function main()
-    print("initn")
+    print("init\n")
     init()
     gps.go({0,0})
     while not tasks.fillGaps() do
+        print("loop\n")
         gps.go({0,0})
     end
     gps.go({0,0})
     if config.takeCareOfDrops then
         action.dumpInventory()
     end
-    print("Done.\nAll crops are now 21/31/0")
+    print("Done.\nAll gaps Filled")
 end
 
 main()
