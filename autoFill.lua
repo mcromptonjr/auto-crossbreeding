@@ -29,11 +29,11 @@ local function init()
 end
 
 local function main()
+    print("initn")
     init()
     gps.go({0,0})
-    while not tasks.breedOnce() do
+    while not tasks.fillGaps() do
         gps.go({0,0})
-        tasks.fillGaps()
     end
     gps.go({0,0})
     if config.takeCareOfDrops then

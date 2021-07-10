@@ -183,7 +183,7 @@ local function fillGaps()
             else
                 action.deweed()
                 action.placeCropStick()
-                local fillResult - false
+                local fillResult = false
             end
         end
         if action.needCharge() then
