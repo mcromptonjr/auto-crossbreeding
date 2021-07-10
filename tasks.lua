@@ -151,8 +151,59 @@ local function spreadOnce()
     return false
 end
 
+local function fillGaps()
+    -- return true if all the gaps have been filled
+    local fillResult = true
+
+    if not nonstop and lowestStat == 52 then
+        return true
+    end
+
+    for slot=2, config.farmSize^2, 2 do
+        gps.go(posUtil.farmToGlobal(slot))
+        local crop = scanner.scan()
+        if crop.name == "air" then
+            action.placeCropStick(2)
+            local fillResult = false
+        elseif (not config.assumeNoBareStick) and crop.name == "crop" then
+            action.placeCropStick()
+            local fillResult = false
+        elseif crop.isCrop then
+            if crop.name == "weed" or crop.gr > 21 or
+              (crop.name == "venomilia" and crop.gr > 7) then
+                action.deweed()
+                action.placeCropStick()
+                local fillResult = false
+            elseif crop.ga ~= 31 and crop.re ~= 0 then
+                action.deweed()
+                action.placeCropStick()
+                local fillResult = false
+            elseif crop.name == database.getFarm()[1].name and crop.gr == 31 and crop.re == 0 then
+                if suitableSlot == 0 then
+                    action.deweed()
+                    action.placeCropStick()
+                else
+                    action.transplant(posUtil.farmToGlobal(slot), posUtil.farmToGlobal(suitableSlot))
+                    action.placeCropStick(2)
+                    database.updateFarm(suitableSlot, crop)
+                    updateLowest()
+                end
+            else
+                action.deweed()
+                action.placeCropStick()
+            end
+        end
+        if action.needCharge() then
+            action.charge()
+        end
+    end
+    return fillResult
+end
+
+
 return {
     spreadOnce = spreadOnce,
     breedOnce = breedOnce,
-    updateLowest = updateLowest
+    updateLowest = updateLowest,
+    fillGaps = fillGaps
 }

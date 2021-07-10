@@ -238,4 +238,5 @@ return {
     transplant = transplant,
     transplantToMultifarm = transplantToMultifarm,
     destroyAll = destroyAll
+    dumpInventory = dumpInventory
 }

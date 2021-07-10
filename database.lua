@@ -1,8 +1,3 @@
-local gps = require("gps")
-local posUtil = require("posUtil")
-local scanner = require("scanner")
-local config = require("config")
-
 --[[
 If you are reading the source code and got confused by the whole "slot" thing,
 here is some explanation:
@@ -26,6 +21,11 @@ but the number increases from left to right. Like this:
 |1|6|7|
 -------
 ]]
+
+local gps = require("gps")
+local posUtil = require("posUtil")
+local scanner = require("scanner")
+local config = require("config")
 
 local storage = {}
 local reverseStorage = {} -- for a faster lookup of already existing crops
