@@ -152,7 +152,6 @@ local function spreadOnce()
 end
 
 local function fillGaps()
-    -- return true if all the gaps have been filled
     print("fillGaps called\n")
     local fillResult = true
     return fillResult
