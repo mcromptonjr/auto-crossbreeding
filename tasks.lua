@@ -178,19 +178,12 @@ local function fillGaps()
                 action.deweed()
                 action.placeCropStick()
                 local fillResult = false
-            elseif crop.name == database.getFarm()[1].name and crop.gr == 31 and crop.re == 0 then
-                if suitableSlot == 0 then
-                    action.deweed()
-                    action.placeCropStick()
-                else
-                    action.transplant(posUtil.farmToGlobal(slot), posUtil.farmToGlobal(suitableSlot))
-                    action.placeCropStick(2)
-                    database.updateFarm(suitableSlot, crop)
-                    updateLowest()
-                end
+            elseif crop.name == database.getFarm()[1].name then
+                local ignoreMe = true
             else
                 action.deweed()
                 action.placeCropStick()
+                local fillResult - false
             end
         end
         if action.needCharge() then
