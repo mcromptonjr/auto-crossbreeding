@@ -159,30 +159,34 @@ local function fillGaps()
     for slot=2, config.farmSize^2, 2 do
         gps.go(posUtil.farmToGlobal(slot))
         local crop = scanner.scan()
-        print("Crop = "..crop.name.."\n")
         if crop.name == "air" then
             action.placeCropStick(2)
-            local fillResult = false`
-        elseif (not config.assumeNoBa
-        reStick) and crop.name == "crop" then
+            local fillResult = false
+            print("Crop = air\n")
+        elseif (not config.assumeNoBareStick) and crop.name == "crop" then
             action.placeCropStick()
             local fillResult = false
+            print("Crop = empty\n")
         elseif crop.isCrop then
             if crop.name == "weed" or crop.gr > 21 or
               (crop.name == "venomilia" and crop.gr > 7) then
                 action.deweed()
                 action.placeCropStick()
                 local fillResult = false
+                print("Crop = weed or too high growth\n")
             elseif crop.ga ~= 31 and crop.re ~= 0 then
                 action.deweed()
                 action.placeCropStick()
                 local fillResult = false
+                print("Crop = wrong stats\n")
             elseif crop.name == database.getFarm()[1].name then
                 local ignoreMe = true
-            else
+                print("Crop = keep\n")
+           else
                 action.deweed()
                 action.placeCropStick()
                 local fillResult = false
+                print("Crop = unknown\n")
             end
         end
         if action.needCharge() then
