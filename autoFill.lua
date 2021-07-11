@@ -25,8 +25,10 @@ if #args == 1 then
 end
 
 local function init()
-    database.scanFarm()
     database.addToFilled(1)
+    print(database.existsInFilled(1))
+    print("\n")
+    database.scanFarm()
 end
 
 local function main()

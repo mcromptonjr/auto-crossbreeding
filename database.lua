@@ -175,7 +175,8 @@ end
 local function existInFilled(slot)
     -- I know I can simply write "return filled[flot]"
     -- But I want the api have a clean return value (alway bool)
-    if filled[toString(slot)] then
+    local strSlot = toString(slot)
+    if filled[strSlot] then
         return true
     else
         return false
