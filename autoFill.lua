@@ -28,6 +28,7 @@ local function init()
     database.addToFilled(1)
     print(database.existsInFilled(1))
     print("\n")
+    gps.turnTo(1)
     database.scanFarm()
 end
 
