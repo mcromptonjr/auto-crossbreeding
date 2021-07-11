@@ -159,6 +159,9 @@ local function fillGaps()
     for slot=2, config.farmSize^2, 2 do
         gps.go(posUtil.farmToGlobal(slot))
         local crop = scanner.scan()
+        print("cropname=`")
+        print(crop.name)
+        print("`\n")
         if crop.name == "air" then
             action.placeCropStick(2)
             fillResult = false
