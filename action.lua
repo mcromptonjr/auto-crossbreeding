@@ -119,7 +119,7 @@ local function deweed()
     end
     robot.select(robot.inventorySize()+config.spadeSlot)
     inventory_controller.equip()
-    robot.swingDown()
+    robot.useDown()
     if config.takeCareOfDrops then
         robot.suckDown()
     end
@@ -134,7 +134,7 @@ local function decrop()
     end
     robot.select(robot.inventorySize()+config.spadeSlot)
     inventory_controller.equip()
-    robot.useDown()
+    robot.swingDown()
     if config.takeCareOfDrops then
         robot.suckDown()
     end
