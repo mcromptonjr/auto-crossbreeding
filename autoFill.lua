@@ -26,6 +26,7 @@ end
 
 local function init()
     database.scanFarm()
+    database.addToFilled(1)
 end
 
 local function main()
