@@ -162,7 +162,9 @@ local function fillGaps()
         print("cropname=`")
         print(crop.name)
         print("`\n")
-        if crop.name == "air" then
+        if database.existInFilled(slot)
+            print("Slot already done\n")
+        elseif crop.name == "air" then
             action.placeCropStick(2)
             fillResult = false
             print("Crop = air\n")
@@ -183,6 +185,7 @@ local function fillGaps()
                 fillResult = false
                 print("Crop = wrong stats\n")
             elseif crop.name == database.getFarm()[1].name then
+                database.addToFilled(slot)
                 local ignoreMe = true
               else
                 action.deweed()

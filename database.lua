@@ -28,10 +28,15 @@ local scanner = require("scanner")
 local config = require("config")
 
 local storage = {}
+
 local reverseStorage = {} -- for a faster lookup of already existing crops
+
 local farm = {} -- odd slots only
 -- the center of this pos is the center of the multifarm.
 -- you can find functions in posUtil to translate it to global pos.
+
+local filled = {} -- used by autoFill to stop scanning completed spots
+
 local lastMultifarmPos = {0, 0}
 
 local function getStorage()
@@ -86,6 +91,10 @@ end
 local function addToStorage(crop)
     storage[#storage+1] = crop
     reverseStorage[crop.name] = #storage
+end
+
+local function addToFilled(slot)
+    filled[#filled+1] = slot
 end
 
 local function updateFarm(slot, crop)
@@ -163,6 +172,16 @@ local function existInStorage(crop)
     end
 end
 
+local function existInFilled(slot)
+    -- I know I can simply write "return filled[flot]"
+    -- But I want the api have a clean return value (alway bool)
+    if filled[slot] then
+        return true
+    else
+        return false
+    end
+end
+
 local function nextStorageSlot()
     return #storage+1
 end
@@ -180,5 +199,7 @@ return {
     addToStorage = addToStorage,
     updateFarm = updateFarm,
     nextMultifarmPos = nextMultifarmPos,
-    updateMultifarm = updateMultifarm
+    updateMultifarm = updateMultifarm,
+    addToFilled = addToFilled,
+    existInFilled = existInFilled
 }
