@@ -94,7 +94,7 @@ local function addToStorage(crop)
 end
 
 local function addToFilled(slot)
-    filled[#filled+1] = toString(slot)
+    filled[#filled+1] = tostring(slot)
 end
 
 local function updateFarm(slot, crop)
@@ -175,7 +175,7 @@ end
 local function existInFilled(slot)
     -- I know I can simply write "return filled[flot]"
     -- But I want the api have a clean return value (alway bool)
-    local strSlot = toString(slot)
+    local strSlot = tostring(slot)
     if filled[strSlot] then
         return true
     else
