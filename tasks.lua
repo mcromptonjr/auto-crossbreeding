@@ -182,7 +182,15 @@ local function fillGaps()
             elseif crop.name == database.getFarm()[1].name then
                 local ignoreMe = true
                 print("Crop = keep\n")
-           else
+                print("gr=")
+                print(crops.gr)
+                print("ga=")
+                print(crops.ga)
+                print("re=")
+                print(crops.re)
+                print(".\n")
+
+              else
                 action.deweed()
                 action.placeCropStick()
                 local fillResult = false
