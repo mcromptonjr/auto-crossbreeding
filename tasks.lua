@@ -167,7 +167,7 @@ local function fillGaps()
             print("cropname=`")
             print(crop.name)
             print("`\n")
-            elseif crop.name == "air" then
+            if crop.name == "air" then
                 action.placeCropStick(2)
                 fillResult = false
                 print("Crop = air\n")
