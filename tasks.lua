@@ -178,17 +178,9 @@ local function fillGaps()
                 action.decrop()
                 action.placeCropStick()
                 fillResult = false
-                print("Crop = wrong wrong stats\n")
+                print("Crop = wrong stats\n")
             elseif crop.name == database.getFarm()[1].name then
                 local ignoreMe = true
-                print("Crop = keep\n")
-                print("gr=")
-                print(crop.gr)
-                print("ga=")
-                print(crop.ga)
-                print("re=")
-                print(crop.re)
-                print(".\n")
               else
                 action.deweed()
                 action.placeCropStick()

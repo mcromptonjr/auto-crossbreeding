@@ -251,6 +251,7 @@ return {
     restockAll = restockAll,
     placeCropStick = placeCropStick,
     deweed = deweed,
+    decrop = decrop,
     deplant = deplant,
     transplant = transplant,
     transplantToMultifarm = transplantToMultifarm,
