@@ -162,7 +162,7 @@ local function fillGaps()
         print("cropname=`")
         print(crop.name)
         print("`\n")
-        if database.existInFilled(slot)
+        if database.existInFilled(slot) then
             print("Slot already done\n")
         elseif crop.name == "air" then
             action.placeCropStick(2)
