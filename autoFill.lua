@@ -40,6 +40,7 @@ local function main()
     if config.takeCareOfDrops then
         action.dumpInventory()
     end
+    gps.turnTo(1)
     print("Done.\nAll gaps Filled")
 end
 

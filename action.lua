@@ -119,6 +119,21 @@ local function deweed()
     end
     robot.select(robot.inventorySize()+config.spadeSlot)
     inventory_controller.equip()
+    robot.swingDown()
+    if config.takeCareOfDrops then
+        robot.suckDown()
+    end
+    inventory_controller.equip()
+    robot.select(selectedSlot)
+end
+
+local function decrop()
+    local selectedSlot = robot.select()
+    if config.takeCareOfDrops and fullInventory() then
+        dumpInventory()
+    end
+    robot.select(robot.inventorySize()+config.spadeSlot)
+    inventory_controller.equip()
     robot.useDown()
     if config.takeCareOfDrops then
         robot.suckDown()
@@ -235,6 +250,7 @@ return {
     restockAll = restockAll,
     placeCropStick = placeCropStick,
     deweed = deweed,
+    deplant = deplant,
     transplant = transplant,
     transplantToMultifarm = transplantToMultifarm,
     destroyAll = destroyAll,

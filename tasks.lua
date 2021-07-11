@@ -168,26 +168,26 @@ local function fillGaps()
             local fillResult = false
             print("Crop = empty\n")
         elseif crop.isCrop then
-            if crop.name == "weed" or crop.gr ~= 21 or
+            if crop.name == "weed" or
               (crop.name == "venomilia" and crop.gr > 7) then
                 action.deweed()
                 action.placeCropStick()
                 local fillResult = false
-                print("Crop = weed or not ideal growth\n")
-            elseif crop.ga ~= 31 and crop.re ~= 0 then
-                action.deweed()
+                print("Crop = weed\n")
+            elseif crop.ga ~= 31 and crop.re ~= 0 and crop.gr ~= 21 then
+                action.decrop()
                 action.placeCropStick()
                 local fillResult = false
-                print("Crop = wrong gain or resist stats\n")
+                print("Crop = wrong wrong stats\n")
             elseif crop.name == database.getFarm()[1].name then
                 local ignoreMe = true
                 print("Crop = keep\n")
                 print("gr=")
-                print(crops.gr)
+                print(crop.gr)
                 print("ga=")
-                print(crops.ga)
+                print(crop.ga)
                 print("re=")
-                print(crops.re)
+                print(crop.re)
                 print(".\n")
 
               else
