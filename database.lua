@@ -94,7 +94,8 @@ local function addToStorage(crop)
 end
 
 local function addToFilled(slot)
-    filled[#filled+1] = tostring(slot)
+    local strSlot = tostring(slot)
+    filled[#filled+1] = strSlot
 end
 
 local function updateFarm(slot, crop)
