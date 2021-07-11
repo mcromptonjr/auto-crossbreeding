@@ -174,7 +174,7 @@ local function fillGaps()
                 action.placeCropStick()
                 fillResult = false
                 print("Crop = weed\n")
-            elseif crop.ga ~= 31 and crop.re ~= 0 and crop.gr ~= 21 then
+            elseif crop.ga ~= 31 or crop.re ~= 0 or crop.gr ~= 21 then
                 action.decrop()
                 action.placeCropStick()
                 fillResult = false
