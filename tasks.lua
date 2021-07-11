@@ -157,41 +157,45 @@ local function fillGaps()
     print("fillGaps called\n")
     local fillResult = true
     for slot=2, config.farmSize^2, 2 do
-        gps.go(posUtil.farmToGlobal(slot))
-        local crop = scanner.scan()
-        print("cropname=`")
-        print(crop.name)
-        print("`\n")
         if database.existInFilled(slot) then
-            print("Slot already done\n")
-        elseif crop.name == "air" then
-            action.placeCropStick(2)
-            fillResult = false
-            print("Crop = air\n")
-        elseif (not config.assumeNoBareStick) and crop.name == "crop" then
-            action.placeCropStick()
-            fillResult = false
-            print("Crop = empty\n")
-        elseif crop.isCrop then
-            if crop.name == "weed" or
-              (crop.name == "venomilia" and crop.gr > 7) then
-                action.deweed()
+            print("Slot already done-")
+            print(slot)
+            print("/n")
+        else
+            gps.go(posUtil.farmToGlobal(slot))
+            local crop = scanner.scan()
+            print("cropname=`")
+            print(crop.name)
+            print("`\n")
+            elseif crop.name == "air" then
+                action.placeCropStick(2)
+                fillResult = false
+                print("Crop = air\n")
+            elseif (not config.assumeNoBareStick) and crop.name == "crop" then
                 action.placeCropStick()
                 fillResult = false
-                print("Crop = weed\n")
-            elseif crop.ga ~= 31 or crop.re ~= 0 or crop.gr ~= 21 then
-                action.decrop()
-                action.placeCropStick()
-                fillResult = false
-                print("Crop = wrong stats\n")
-            elseif crop.name == database.getFarm()[1].name then
-                database.addToFilled(slot)
-                local ignoreMe = true
-              else
-                action.deweed()
-                action.placeCropStick()
-                fillResult = false
-                print("Crop = unknown\n")
+                print("Crop = empty\n")
+            elseif crop.isCrop then
+                if crop.name == "weed" or
+                  (crop.name == "venomilia" and crop.gr > 7) then
+                    action.deweed()
+                    action.placeCropStick()
+                    fillResult = false
+                    print("Crop = weed\n")
+                elseif crop.ga ~= 31 or crop.re ~= 0 or crop.gr ~= 21 then
+                    action.decrop()
+                    action.placeCropStick()
+                    fillResult = false
+                    print("Crop = wrong stats\n")
+                elseif crop.name == database.getFarm()[1].name then
+                    database.addToFilled(slot)
+                    local ignoreMe = true
+                  else
+                    action.deweed()
+                    action.placeCropStick()
+                    fillResult = false
+                    print("Crop = unknown\n")
+                end
             end
         end
         if action.needCharge() then
