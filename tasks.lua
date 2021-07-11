@@ -161,23 +161,23 @@ local function fillGaps()
         local crop = scanner.scan()
         if crop.name == "air" then
             action.placeCropStick(2)
-            local fillResult = false
+            fillResult = false
             print("Crop = air\n")
         elseif (not config.assumeNoBareStick) and crop.name == "crop" then
             action.placeCropStick()
-            local fillResult = false
+            fillResult = false
             print("Crop = empty\n")
         elseif crop.isCrop then
             if crop.name == "weed" or
               (crop.name == "venomilia" and crop.gr > 7) then
                 action.deweed()
                 action.placeCropStick()
-                local fillResult = false
+                fillResult = false
                 print("Crop = weed\n")
             elseif crop.ga ~= 31 and crop.re ~= 0 and crop.gr ~= 21 then
                 action.decrop()
                 action.placeCropStick()
-                local fillResult = false
+                fillResult = false
                 print("Crop = wrong wrong stats\n")
             elseif crop.name == database.getFarm()[1].name then
                 local ignoreMe = true
@@ -189,11 +189,10 @@ local function fillGaps()
                 print("re=")
                 print(crop.re)
                 print(".\n")
-
               else
                 action.deweed()
                 action.placeCropStick()
-                local fillResult = false
+                fillResult = false
                 print("Crop = unknown\n")
             end
         end
@@ -201,6 +200,9 @@ local function fillGaps()
             action.charge()
         end
     end
+    print("fillResult=")
+    print(fillResult)
+    print("\n")
     return fillResult
 end
 
