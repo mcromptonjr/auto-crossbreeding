@@ -74,8 +74,10 @@ end
 local function breedOnce(nonstop)
     -- return true if all stats are maxed out
     -- 52 = 21(max gr) + 31(max ga) - 0 (min re)
-    if not nonstop and lowestStat == 52 then
-        return true
+    if lowestStat == 52 then
+        if nonstop == false then
+            return true
+        end
     end
 
     for slot=2, config.farmSize^2, 2 do
