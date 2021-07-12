@@ -71,7 +71,7 @@ local function findSuitableFarmSlot(crop)
     end
 end
 
-local function breedOnce()
+local function breedOnce(nonstop)
     -- return true if all stats are maxed out
     -- 52 = 21(max gr) + 31(max ga) - 0 (min re)
     if not nonstop and lowestStat == 52 then

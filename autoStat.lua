@@ -29,7 +29,7 @@ end
 
 local function main()
     init()
-    while not nonstop and not tasks.breedOnce() do
+    while tasks.breedOnce(nonstop) do
         gps.go({0,0})
         action.restockAll()
     end
