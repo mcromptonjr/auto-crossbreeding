@@ -49,7 +49,7 @@ local config = {
     -- helpful while debuging.
     bestStatWhileSpreading = true,
 
-    -- assume there is no bare stick in the farm, should increace speed.
+    -- assume there is no bare stick in the farm, should increase speed.
     assumeNoBareStick = false,
 
     -----------Do Not Change Zone------------

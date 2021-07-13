@@ -33,6 +33,7 @@ local function init()
 end
 
 local function main()
+    gps.turnTo(1)
     print("init\n")
     init()
     gps.go({0,0})

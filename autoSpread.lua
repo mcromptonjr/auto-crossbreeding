@@ -25,6 +25,7 @@ local function init()
 end
 
 local function main()
+    gps.turnTo(1)
     init()
     while not tasks.spreadOnce() do
         gps.go({0, 0})
