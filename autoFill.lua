@@ -16,10 +16,13 @@ local tasks = require("tasks")
 local args = {...}
 local nonstop = false
 local docleanup = true
+local ignorestats = false
 if #args == 1 then
     if args[1] == "nocleanup" then
         docleanup = false
     elseif args[1] == "nonstop" then
+        nonstop = true
+    elseif args[1] == "ignorestats" then
         nonstop = true
     end
 end
@@ -37,7 +40,7 @@ local function main()
     print("init\n")
     init()
     gps.go({0,0})
-    while not tasks.fillGaps() do
+    while not tasks.fillGaps(ignorestats) do
         print("loop\n")
         gps.go({0,0})
     end
