@@ -154,9 +154,16 @@ local function spreadOnce()
     return false
 end
 
-local function fillGaps()
+local function fillGaps(ignorestats)
     -- return true if all the gaps have been filled
     print("fillGaps called\n")
+
+    if ignorestats then
+        print("ingnorestats = true\n")
+    else
+        print("ingnorestats = false\n")
+    end
+
     local fillResult = true
     for slot=2, config.farmSize^2, 2 do
         gps.go(posUtil.farmToGlobal(slot))
@@ -177,7 +184,8 @@ local function fillGaps()
                 action.placeCropStick()
                 fillResult = false
                     print("Crop = weed\n")
-            elseif crop.ga ~= 31 or crop.re ~= 0 or crop.gr ~= 21 then
+            elseif (not ignorestats and ( crop.ga ~= 31 or crop.re ~= 0 or crop.gr ~= 21 )) or
+                (ignorestats and (crop.gr > 21 )) then
                 action.decrop()
                 action.placeCropStick()
                 action.placeCropStick()
