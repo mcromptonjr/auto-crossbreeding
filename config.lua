@@ -52,6 +52,8 @@ local config = {
     -- assume there is no bare stick in the farm, should increase speed.
     assumeNoBareStick = false,
 
+    --  delay on planting a empty stick
+
     -----------Do Not Change Zone------------
 
     multifarmCentorOffset = {-3, 4},
