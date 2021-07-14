@@ -12,7 +12,6 @@ local posUtil = require("posUtil")
 local config = require("config")
 local tasks = require("tasks")
 
-
 local args = {...}
 local nonstop = false
 local docleanup = true
