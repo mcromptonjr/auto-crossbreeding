@@ -88,7 +88,7 @@ local function breedOnce(nonstop)
         elseif (not config.assumeNoBareStick) and crop.name == "crop" then
             action.placeCropStick()
         elseif crop.isCrop then
-            if crop.name == "weed" or crop.gr > 21 or
+            if crop.name == "weed" or crop.gr > 21 or or crop.re > 0 or
               (crop.name == "venomilia" and crop.gr > 7) then
                 action.deweed()
                 action.placeCropStick()
@@ -133,7 +133,7 @@ local function spreadOnce()
                 action.deweed()
                 action.placeCropStick()
             elseif crop.name == database.getFarm()[1].name and
-                  (not config.bestStatWhileSpreading or (crop.gr >= 21 and crop.ga == 31)) then
+                  (not config.bestStatWhileSpreading or (crop.gr >= 21 and crop.ga == 31 and crop.re == 0)) then
                 local nextMultifarmPos = database.nextMultifarmPos()
                 if nextMultifarmPos then
                     action.transplantToMultifarm(posUtil.farmToGlobal(slot), nextMultifarmPos)
