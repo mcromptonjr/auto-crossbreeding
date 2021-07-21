@@ -43,7 +43,8 @@ local function main()
         print("nonstop...\n")
     end
     repeat
-        while not tasks.fillGaps(ignorestats) do
+        -- Attempt to make the nonstop wait till the very last crop cos it's anoying
+        while (not nonstop and (tasks.fillGaps(ignorestats) > 0) or (nonstop and (tasks.fillGaps(ignorestats) > 1)  do
             gps.go({0,0})
         end
         gps.go({0,0})
