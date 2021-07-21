@@ -39,16 +39,28 @@ local function main()
     print("init\n")
     init()
     gps.go({0,0})
-    while not tasks.fillGaps(ignorestats) do
-        print("loop\n")
+    if (nonstop) then
+        print("nonstop...\n")
+    end
+    repeat
+        while not tasks.fillGaps(ignorestats) do
+            gps.go({0,0})
+        end
         gps.go({0,0})
-    end
-    gps.go({0,0})
-    if config.takeCareOfDrops then
-        action.dumpInventory()
-    end
-    gps.turnTo(1)
-    print("Done.\nAll gaps Filled")
+        if config.takeCareOfDrops then
+            action.dumpInventory()
+        end
+        gps.go({0,0})
+        gps.turnTo(1)
+        action.destroyAll()
+        gps.go({0,0})
+        if config.takeCareOfDrops then
+            action.dumpInventory()
+        end
+        gps.go({0,0})
+        gps.turnTo(1)
+        print("Loop Done.\n")
+    until (not nonstop)
 end
 
 main()

@@ -88,7 +88,7 @@ local function breedOnce(nonstop)
         elseif (not config.assumeNoBareStick) and crop.name == "crop" then
             action.placeCropStick()
         elseif crop.isCrop then
-            if crop.name == "weed" or crop.gr > 21 or or crop.re > 0 or
+            if crop.name == "weed" or crop.gr > 21 or crop.re > 0 or
               (crop.name == "venomilia" and crop.gr > 7) then
                 action.deweed()
                 action.placeCropStick()
