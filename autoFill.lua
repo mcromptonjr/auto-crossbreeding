@@ -44,7 +44,7 @@ local function main()
     end
     repeat
         -- Attempt to make the nonstop not wait till the very last crop cos it's anoying
-        while ((not nonstop) and (tasks.fillGaps(ignorestats) > 0)) or ((nonstop) and (tasks.fillGaps(ignorestats) > 1))  do
+        while ((not nonstop) and (tasks.fillGaps(ignorestats) > 0)) or ((nonstop) and (tasks.fillGaps(ignorestats) > config.autoFillNonstopGoal))  do
             gps.go({0,0})
         end
         gps.go({0,0})

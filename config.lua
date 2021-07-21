@@ -54,6 +54,11 @@ local config = {
 
     --  delay on planting a empty stick
 
+    -- nonstop fill remaining goal i.e. number of non completed crops that must be achieved to start the next clean and restatt process
+    -- dont set this to more than 1/2 the total number of crops else it will always recycle
+
+    autoFillNonstopGoal = 1,
+
     -----------Do Not Change Zone------------
 
     multifarmCentorOffset = {-3, 4},
