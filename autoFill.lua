@@ -22,7 +22,7 @@ if #args == 1 then
     elseif args[1] == "nonstop" then
         nonstop = true
     elseif args[1] == "ignorestats" then
-        nonstop = true
+        ignorestats = true
     end
 end
 

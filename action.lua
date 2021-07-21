@@ -135,7 +135,7 @@ local function decrop()
     robot.select(robot.inventorySize()+config.spadeSlot)
     inventory_controller.equip()
     robot.swingDown()
-    print("swingDown()\n")
+    -- print("swingDown()\n")
     if config.takeCareOfDrops then
         robot.suckDown()
     end
