@@ -165,25 +165,25 @@ local function fillGaps(ignorestats)
         -- print("crop="..slot..", name=`"..crop.name.."`\n")
         if crop.name == "air" then
             action.placeCropStick(2)
-            fillResult = filResult + 1
+            fillResult = fillResult + 1
                 -- print("Crop = air\n")
         elseif (not config.assumeNoBareStick) and crop.name == "crop" then
             action.placeCropStick()
-            fillResult = filResult + 1
+            fillResult = fillResult + 1
                  -- print("Crop = empty\n")
         elseif crop.isCrop then
             if crop.name == "weed" or
               (crop.name == "venomilia" and crop.gr > 7) then
                 action.deweed()
                 action.placeCropStick()
-                fillResult = filResult + 1
+                fillResult = fillResult + 1
                    -- print("Crop = weed\n")
             elseif (not ignorestats and ( crop.ga ~= 31 or crop.re ~= 0 or crop.gr ~= 21 )) or
                 (ignorestats and (crop.gr > 21 )) then
                 action.decrop()
                 action.placeCropStick()
                 action.placeCropStick()
-                fillResult = filResult + 1
+                fillResult = fillResult + 1
                     -- print("Crop = wrong stats\n")
             elseif crop.name == database.getFarm()[1].name then
                 database.addToFilled(slot)
@@ -192,7 +192,7 @@ local function fillGaps(ignorestats)
             else
                 action.deweed()
                 action.placeCropStick()
-                fillResult = filResult + 1
+                fillResult = fillResult + 1
                 -- print("Crop = unknown\n")
             end
         end
