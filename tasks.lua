@@ -154,7 +154,7 @@ local function spreadOnce()
     return false
 end
 
-local function fillGaps(ignorestats)
+local function fillGaps(ignorestats, nonstop)
     -- return true if all the gaps have been filled
     -- print("fillGaps called\n")
 
@@ -185,7 +185,7 @@ local function fillGaps(ignorestats)
                 action.placeCropStick()
                 fillResult = fillResult + 1
                     -- print("Crop = wrong stats\n")
-            elseif crop.name == database.getFarm()[1].name then
+            elseif ((crop.name == database.getFarm()[1].name) or nonstop) then
                 database.addToFilled(slot)
                 local ignoreMe = true
                     -- print("Crop = matched\n")
