@@ -14,13 +14,13 @@ local tasks = require("tasks")
 
 local args = {...}
 local nonstop = false
-local docleanup = true
+local docleanup = false
 local ignorestats = false
 local ignorecrops = false
 
 if #args == 1 then
-    if args[1] == "nocleanup" then
-        docleanup = false
+    if args[1] == "cleanup" then
+        docleanup = true
     elseif args[1] == "nonstop" then
         nonstop = true
         ignorecrops = true
