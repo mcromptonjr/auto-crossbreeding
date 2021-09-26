@@ -26,7 +26,6 @@ if #args == 1 then
         ignorecrops = true
     elseif args[1] == "ignorestats" then
         ignorestats = true
-    end
     elseif args[1] == "ignorecrops" then
         ignorecrops = true
     end
