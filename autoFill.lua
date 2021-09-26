@@ -16,13 +16,19 @@ local args = {...}
 local nonstop = false
 local docleanup = true
 local ignorestats = false
+local ignorecrops = false
+
 if #args == 1 then
     if args[1] == "nocleanup" then
         docleanup = false
     elseif args[1] == "nonstop" then
         nonstop = true
+        ignorecrops = true
     elseif args[1] == "ignorestats" then
         ignorestats = true
+    end
+    elseif args[1] == "ignorecrops" then
+        ignorecrops = true
     end
 end
 
@@ -44,7 +50,7 @@ local function main()
     end
     repeat
         -- Attempt to make the nonstop not wait till the very last crop cos it's anoying
-        while ((not nonstop) and (tasks.fillGaps(ignorestats, nonstop) > 0)) or ((nonstop) and (tasks.fillGaps(ignorestats, nonstop) > config.autoFillNonstopGoal))  do
+        while ((not nonstop) and (tasks.fillGaps(ignorestats, ignorecrops) > 0)) or ((nonstop) and (tasks.fillGaps(ignorestats, ignorecrops) > config.autoFillNonstopGoal))  do
             gps.go({0,0})
         end
         gps.go({0,0})
