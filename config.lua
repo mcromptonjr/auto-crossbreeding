@@ -19,8 +19,8 @@ local config = {
     relayFarmlandPos = {0, 2},
     -- the coordinate for the transvector dislocator
     dislocatorPos = {0, 3},
-	-- the coordinate for a trash can to delete unwanted seeds
-	trashCanPos = {0, 6},
+    -- the coordinate for a trash can to delete unwanted seeds
+    trashCanPos = {0, 6},
     -- the coordinate for the container to store seeds, products, etc
     -- has no effect unless you turn on "takeCareOfDrops" flag.
     storagePos = {0, 5},
@@ -60,12 +60,12 @@ local config = {
     -- dont set this to more than half the total number of crops else it will always recycle
 
     autoFillNonstopGoal = 1,
-	
-	-- The minimum and maximum seed stats needed to keep the seeds. 
-	-- All other seeds will be placed in the trashcan at trashCanPos.
-	-- These options only take effect if takeCareOfDrops is true.
-	minKeepSeedStats = {gain = 21, growth = 31, res = 0}
-	maxKeepSeedStats = {gain = 23, growth = 31, res = 0}
+    
+    -- The minimum and maximum seed stats needed to keep the seeds. 
+    -- All other seeds will be placed in the trashcan at trashCanPos.
+    -- These options only take effect if takeCareOfDrops is true.
+    minKeepSeedStats = {gain = 21, growth = 31, res = 0}
+    maxKeepSeedStats = {gain = 23, growth = 31, res = 0}
 
     -----------Do Not Change Zone------------
 

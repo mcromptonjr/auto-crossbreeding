@@ -68,7 +68,7 @@ end
 
 local function isGoodSeedBag(slot)
     local seedBag = inventory_controller.getStackInInternalSlot(slot).crop
-	return seedBag.gain >= config.minKeepSeedStats.gain and seedBag.gain <= config.maxKeepSeedStats.gain and seedBag.growth >= config.minKeepSeedStats.growth and seedBag.growth <= config.maxKeepSeedStats.growth and seedBag.resistance >= config.minKeepSeedStats.res and seedBag.resistance <= config.maxKeepSeedStats.res
+    return seedBag.gain >= config.minKeepSeedStats.gain and seedBag.gain <= config.maxKeepSeedStats.gain and seedBag.growth >= config.minKeepSeedStats.growth and seedBag.growth <= config.maxKeepSeedStats.growth and seedBag.resistance >= config.minKeepSeedStats.res and seedBag.resistance <= config.maxKeepSeedStats.res
 
 local function dumpInventory(resume)
     local selectedSlot = robot.select()
@@ -79,17 +79,17 @@ local function dumpInventory(resume)
     for i=1, robot.inventorySize()+config.storageStopSlot do
         if robot.count(i) > 0 then
             robot.select(i)
-			if isSeedBag(i) and isGoodSeedBag(i) then
+            if isSeedBag(i) and isGoodSeedBag(i) then
                 for e=1, inventory_controller.getInventorySize(sides.down) do
                     if inventory_controller.getStackInSlot(sides.down, e) == nil then
                         inventory_controller.dropIntoSlot(sides.down, e)
                         break;
                     end
                 end
-		    end
+            end
         end
     end
-	gps.go(config.trashCanPos)
+    gps.go(config.trashCanPos)
     for i=1, robot.inventorySize()+config.storageStopSlot do
         if robot.count(i) > 0 then
             robot.select(i)
