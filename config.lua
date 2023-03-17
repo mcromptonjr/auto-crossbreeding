@@ -64,8 +64,8 @@ local config = {
     -- The minimum and maximum seed stats needed to keep the seeds. 
     -- All other seeds will be placed in the trashcan at trashCanPos.
     -- These options only take effect if takeCareOfDrops is true.
-    minKeepSeedStats = {gain = 21, growth = 31, res = 0}
-    maxKeepSeedStats = {gain = 23, growth = 31, res = 0}
+    minKeepSeedStats = {growth = 21, gain = 31, res = 0},
+    maxKeepSeedStats = {growth = 23, gain = 31, res = 0},
 
     -----------Do Not Change Zone------------
 
