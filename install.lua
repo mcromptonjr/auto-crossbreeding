@@ -4,7 +4,7 @@ Ensure you have the '/ at the end
 
 tinyUrl: https://bit.ly/2Vgn4ki
 ]]
-local path = "https://raw.githubusercontent.com/AtomicGrog/auto-crossbreeding/"
+local path = "https://raw.githubusercontent.com/mcromptonjr/auto-crossbreeding/"
 
 local shell = require("shell")
 local filesystem = require("filesystem")
