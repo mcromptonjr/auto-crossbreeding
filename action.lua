@@ -69,6 +69,7 @@ end
 local function isGoodSeedBag(slot)
     local seedBag = inventory_controller.getStackInInternalSlot(slot).crop
     return seedBag.gain >= config.minKeepSeedStats.gain and seedBag.gain <= config.maxKeepSeedStats.gain and seedBag.growth >= config.minKeepSeedStats.growth and seedBag.growth <= config.maxKeepSeedStats.growth and seedBag.resistance >= config.minKeepSeedStats.res and seedBag.resistance <= config.maxKeepSeedStats.res
+end
 
 local function dumpInventory(resume)
     local selectedSlot = robot.select()
